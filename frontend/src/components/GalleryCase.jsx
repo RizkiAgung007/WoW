@@ -50,7 +50,7 @@ const GalleryCase = () => {
                 Jelajahi berbagai paket dan layanan kami
               </p>
               <Link
-                to="/katalog"
+                to="/gallery"
                 className="inline-flex items-center justify-center w-14 h-14 rounded-full border-2 border-white
                transition-all duration-300 hover:bg-white hover:text-black transform hover:scale-110"
                 aria-label="Lihat Katalog"

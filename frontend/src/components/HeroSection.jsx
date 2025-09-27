@@ -54,7 +54,7 @@ const HeroSection = ({ scrollToId }) => {
               className="relative h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-white text-center"
               style={{ backgroundImage: `url(${slide.image})` }}
             >
-              {/* Overlay dengan gradient yang lebih menarik */}
+
               <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60"></div>
 
               <div className="relative z-10 p-4 max-w-4xl mx-auto">

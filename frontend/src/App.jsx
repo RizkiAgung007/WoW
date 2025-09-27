@@ -21,6 +21,7 @@ import Layout from "./pages/Layout";
 import HomePage from "./pages/HomePage";
 import KatalogPage from "./pages/KatalogPage";
 import OrderPage from "./pages/OrderPage";
+import GalleryPage from "./pages/GalleryPage";
 
 const ProtectedRoute = ({ children }) => {
   const token = localStorage.getItem("token");
@@ -38,6 +39,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="katalog" element={<KatalogPage />} />
           <Route path="order/:id" element={<OrderPage />} />
+          <Route path="gallery" element={<GalleryPage />} />
         </Route>
 
         <Route path="/login" element={<LoginPage />} />

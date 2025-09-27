@@ -19,14 +19,14 @@ const GalleryPage = () => {
         {GalleryImage.map((image, index) => {
           // Randomize layout pattern
           const random = Math.random();
-          let itemClass = "col-span-1 row-span-1"; // default
-
+          let itemClass = "col-span-1 row-span-1"; 
+          
           if (random > 0.85) {
-            itemClass = "col-span-2 row-span-2"; // big square
+            itemClass = "col-span-2 row-span-2"; 
           } else if (random > 0.6) {
-            itemClass = "col-span-1 row-span-2"; // tall
+            itemClass = "col-span-1 row-span-2"; 
           } else if (random > 0.4) {
-            itemClass = "col-span-2 row-span-1"; // wide
+            itemClass = "col-span-2 row-span-1"; 
           }
 
           return (
@@ -39,7 +39,6 @@ const GalleryPage = () => {
                 src={image.src}
                 alt={image.alt}
               />
-              {/* Overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end">
                 <p className="text-white text-sm sm:text-base font-medium p-4 opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500">
                   {image.alt}
