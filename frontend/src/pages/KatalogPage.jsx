@@ -63,78 +63,80 @@ const KatalogPage = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8">
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-extrabold text-gray-900">
-          Jelajahi Katalog Kami
-        </h1>
-        <p className="mt-4 text-lg text-gray-600">
-          Temukan paket yang paling sesuai untuk hari istimewa Anda.
-        </p>
-      </div>
+    <div className="bg-white min-h-screen">
+      <div className="max-w-7xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h1 className="text-4xl sm:text-5xl font-semibold text-[#3A6B4C] tracking-tight">
+            Jelajahi Katalog Kami
+          </h1>
+          <p className="mt-4 text-lg text-[#3A6B4C]/80 max-w-2xl mx-auto">
+            Temukan paket yang paling sesuai untuk hari istimewa Anda.
+          </p>
+        </div>
 
-      {/* Filter Buttons */}
-      <div className="flex justify-center flex-wrap gap-2 mb-12">
-        <button
-          onClick={() => handleFilter("semua")}
-          className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-            selected === "semua"
-              ? "bg-blue-600 text-white"
-              : "bg-gray-200 text-gray-700 hover:bg-gray-300"
-          }`}
-        >
-          Semua
-        </button>
-        {PaketFilter.map((jenis) => (
+        {/* Filter Buttons */}
+        <div className="flex justify-center flex-wrap gap-3 mb-16">
           <button
-            key={jenis.id}
-            onClick={() => handleFilter(jenis.id)}
-            className={`px-4 py-2 text-sm font-medium rounded-full transition-colors ${
-              selected === jenis.id
-                ? "bg-blue-600 text-white"
-                : "bg-gray-200 text-gray-700 hover:bg-gray-300"
+            onClick={() => handleFilter("semua")}
+            className={`px-5 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${
+              selected === "semua"
+                ? "bg-[#3A6B4C] text-white shadow-md"
+                : "bg-gray-100 text-[#3A6B4C]/80 hover:bg-gray-200"
             }`}
           >
-            {jenis.nama}
+            Semua
           </button>
-        ))}
-      </div>
-
-      {/* Tampilan Konten Katalog */}
-      {loading ? (
-        <p className="text-center text-gray-500">Memuat katalog...</p>
-      ) : error ? (
-        <p className="text-center text-red-500 bg-red-50 p-4 rounded-lg">
-          {error}
-        </p>
-      ) : katalog.length === 0 ? (
-        <p className="text-center text-gray-500">
-          Tidak ada katalog yang ditemukan.
-        </p>
-      ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-          {katalog.map((paket) => (
-            <PaketCard
-              key={paket.catalog_id}
-              id={paket.catalog_id}
-              gambar={paket.gambar}
-              nama={paket.nama_paket}
-              harga={paket.harga}
-              jenis={paket.jenis_paket}
-              deskripsi={paket.deskripsi}
-            />
+          {PaketFilter.map((jenis) => (
+            <button
+              key={jenis.id}
+              onClick={() => handleFilter(jenis.id)}
+              className={`px-5 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${
+                selected === jenis.id
+                  ? "bg-[#3A6B4C] text-white shadow-md"
+                  : "bg-gray-100 text-[#3A6B4C]/80 hover:bg-gray-200"
+              }`}
+            >
+              {jenis.nama}
+            </button>
           ))}
         </div>
-      )}
 
-      {/* Pagination */}
-      {!loading && !error && (
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
-      )}
+        {/* Tampilan Konten Katalog */}
+        {loading ? (
+          <p className="text-center text-[#3A6B4C]/70">Memuat katalog...</p>
+        ) : error ? (
+          <p className="text-center text-red-500 bg-red-50 p-4 rounded-lg">
+            {error}
+          </p>
+        ) : katalog.length === 0 ? (
+          <p className="text-center text-[#3A6B4C]/70">
+            Tidak ada katalog yang ditemukan.
+          </p>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            {katalog.map((paket) => (
+              <PaketCard
+                key={paket.catalog_id}
+                id={paket.catalog_id}
+                gambar={paket.gambar}
+                nama={paket.nama_paket}
+                harga={paket.harga}
+                jenis={paket.jenis_paket}
+                deskripsi={paket.deskripsi}
+              />
+            ))}
+          </div>
+        )}
+
+        {/* Pagination */}
+        {!loading && !error && totalPages > 1 && (
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        )}
+      </div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FiArrowLeft, FiSave } from "react-icons/fi";
+import { FiArrowLeft, FiSave, FiUploadCloud } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 
 const jenisPaketOptions = [
@@ -77,24 +77,26 @@ const CreateKatalog = () => {
   };
 
   const inputClass =
-    "w-full p-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500";
-  const labelClass = "block text-sm font-medium text-gray-700 mb-1";
+    "w-full px-4 py-3 bg-gray-100 border-transparent rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#A8E6CF] transition-colors duration-300";
+  const labelClass = "block text-sm font-medium text-[#3A6B4C]/90 mb-2";
 
   return (
     <div>
       <div className="flex items-center mb-6">
         <button
           onClick={() => navigate("/admin/katalog")}
-          className="p-2 mr-4 rounded-full hover:bg-gray-200"
+          className="p-2 mr-4 rounded-full hover:bg-[#A8E6CF]/40 text-[#3A6B4C] transition-colors"
         >
           <FiArrowLeft size={20} />
         </button>
-        <h1 className="text-3xl font-bold text-gray-800">Tambah Katalog</h1>
+        <h1 className="text-3xl font-semibold text-[#3A6B4C]">
+          Tambah Katalog
+        </h1>
       </div>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow-md"
+        className="bg-white shadow-md p-4 md:p-8 rounded-2xl"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Kolom Kiri untuk input teks */}
@@ -157,43 +159,48 @@ const CreateKatalog = () => {
           </div>
 
           {/* Kolom Kanan untuk upload gambar */}
-          <div>
-            <label className={labelClass}>Photo</label>
-            <input
-              type="file"
-              name="gambar"
-              onChange={handleImage}
-              className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer"
-            />
-            {preview && (
-              <div className="mt-4 p-4 border rounded-lg bg-gray-50">
-                <p className="text-sm font-medium text-gray-600 mb-2">
-                  Preview:
-                </p>
+          <div className="space-y-6">
+            <div>
+              <label className={labelClass}>Gambar Paket</label>
+              <input
+                type="file"
+                name="gambar"
+                onChange={handleImage}
+                accept="image/*"
+                className="w-full text-sm text-[#3A6B4C]/80 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#A8E6CF]/50 file:text-[#3A6B4C] hover:file:bg-[#A8E6CF]/80 cursor-pointer"
+              />
+            </div>
+            {preview ? (
+              <div className="p-4 border-2 border-dashed border-gray-200 rounded-lg bg-gray-50">
                 <img
                   src={preview}
                   alt="Preview"
-                  className="w-full h-auto max-h-48 object-contain rounded"
+                  className="w-full h-auto max-h-64 object-contain rounded"
                 />
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center text-center p-4 h-full border-2 border-dashed border-gray-200 rounded-lg bg-gray-50 text-[#3A6B4C]/70">
+                <FiUploadCloud size={40} className="mb-2" />
+                <p className="text-sm">Preview gambar akan tampil di sini</p>
               </div>
             )}
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t">
-          {error && (
-            <p className="text-red-600 text-sm text-center bg-red-50 p-3 rounded-lg mb-4">
-              {error}
-            </p>
-          )}
+        <div className="mt-8 pt-6 border-t border-gray-200 flex flex-col sm:flex-row-reverse sm:items-center sm:justify-between">
           <button
             type="submit"
             disabled={loading}
-            className="flex items-center justify-center w-full md:w-auto bg-indigo-600 text-white font-semibold py-2.5 px-6 rounded-lg hover:bg-indigo-700 transition-colors disabled:bg-indigo-300"
+            className="flex items-center justify-center w-full sm:w-auto bg-[#3A6B4C] text-white font-semibold py-2.5 px-6 rounded-lg hover:bg-[#2c523a] transition-colors disabled:bg-[#3A6B4C]/50"
           >
             <FiSave className="mr-2" />
-            {loading ? "Menyimpan..." : "Submit"}
+            {loading ? "Menyimpan..." : "Simpan Katalog"}
           </button>
+          {error && (
+            <p className="text-red-600 text-sm text-center bg-red-50 p-3 rounded-lg mt-4 sm:mt-0 sm:text-left">
+              {error}
+            </p>
+          )}
         </div>
       </form>
     </div>

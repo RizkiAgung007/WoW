@@ -47,6 +47,19 @@ const HeroSection = ({ scrollToId }) => {
 
   return (
     <div className="relative w-full overflow-hidden pt-16">
+      <style>
+        {`
+          .slick-dots li button:before {
+            color: #A8E6CF;
+            opacity: 0.5;
+            font-size: 10px;
+          }
+          .slick-dots li.slick-active button:before {
+            color: #A8E6CF;
+            opacity: 1;
+          }
+        `}
+      </style>
       <Slider {...settings}>
         {dummyData.map((slide, index) => (
           <div key={index}>
@@ -54,8 +67,7 @@ const HeroSection = ({ scrollToId }) => {
               className="relative h-screen bg-cover bg-center bg-no-repeat flex items-center justify-center text-white text-center"
               style={{ backgroundImage: `url(${slide.image})` }}
             >
-
-              <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/60"></div>
+              <div className="absolute inset-0 bg-gradient-to-b from-[#3A6B4C]/40 via-[#3A6B4C]/60 to-[#3A6B4C]/80"></div>
 
               <div className="relative z-10 p-4 max-w-4xl mx-auto">
                 <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold drop-shadow-2xl animate-fade-in-down mb-6">
@@ -65,9 +77,8 @@ const HeroSection = ({ scrollToId }) => {
                   {slide.subtitle}
                 </p>
 
-                {/* CTA button */}
                 <div className="mt-8 animate-fade-in-up animation-delay-300">
-                  <button className="bg-white/20 backdrop-blur-sm text-white px-8 py-3 rounded-full border border-white/30 hover:bg-white/30 transition-all duration-300 transform hover:scale-105">
+                  <button className="bg-[#A8E6CF]/20 backdrop-blur-sm text-white px-8 py-3 rounded-full border border-[#A8E6CF]/50 hover:bg-[#A8E6CF]/40 transition-all duration-300 transform hover:scale-105">
                     Pelajari Lebih Lanjut
                   </button>
                 </div>
@@ -77,11 +88,11 @@ const HeroSection = ({ scrollToId }) => {
         ))}
       </Slider>
 
-      {/* Arrow Button Down */}
+      {/* CTA button */}
       <button
         onClick={handleScroll}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-14 h-14 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center border border-white/30
-                     hover:bg-white/30 hover:border-white/50 transition-all duration-300 transform hover:scale-110 animate-bounce"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-14 h-14 bg-[#A8E6CF]/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white border border-[#A8E6CF]/50
+                   hover:bg-[#A8E6CF]/40 hover:border-[#A8E6CF]/70 transition-all duration-300 transform hover:scale-110 animate-bounce"
         aria-label="Scroll to next section"
       >
         <FiArrowDown size={24} />

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FiSave, FiUploadCloud } from "react-icons/fi";
 
 const ManajemenSettings = () => {
   const [formData, setFormData] = useState({
@@ -87,22 +88,24 @@ const ManajemenSettings = () => {
   };
 
   if (loading) {
-    return <p className="text-center mt-8 text-gray-600">Memuat settings...</p>;
+    return (
+      <p className="text-center mt-8 text-[#3A6B4C]/70">Memuat settings...</p>
+    );
   }
 
   const inputClass =
-    "w-full p-2.5 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent text-gray-900";
-  const labelClass = "block text-sm font-medium text-gray-700 mb-1";
+    "w-full px-4 py-3 bg-gray-100 border-transparent rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#A8E6CF] transition-colors duration-300";
+  const labelClass = "block text-sm font-medium text-[#3A6B4C]/90 mb-2";
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">
+      <h1 className="text-3xl font-semibold text-[#3A6B4C] mb-6">
         Settings Website
       </h1>
 
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow-md"
+        className="p-8 rounded-2xl"
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
           {/* Kolom Kiri */}
@@ -166,40 +169,44 @@ const ManajemenSettings = () => {
               <input
                 type="file"
                 name="logo"
+                accept="image/*"
                 onChange={handleLogoChange}
-                className="w-full text-sm text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100 cursor-pointer"
+                className="w-full text-sm text-[#3A6B4C]/80 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-[#A8E6CF]/50 file:text-[#3A6B4C] hover:file:bg-[#A8E6CF]/80 cursor-pointer"
               />
-              {logoPreview && (
-                <div className="mt-4 p-4 border rounded-lg bg-gray-50">
-                  <p className="text-sm font-medium text-gray-600 mb-2">
-                    Preview Logo:
-                  </p>
+              {logoPreview ? (
+                <div className="mt-4 p-4 border-2 border-dashed border-gray-200 rounded-lg bg-gray-50">
                   <img
                     src={logoPreview}
                     alt="Logo Preview"
                     className="h-20 w-auto rounded"
                   />
                 </div>
+              ) : (
+                <div className="mt-4 flex items-center justify-center text-center p-4 h-24 border-2 border-dashed border-gray-200 rounded-lg bg-gray-50 text-[#3A6B4C]/70">
+                  <FiUploadCloud size={24} className="mr-2" />
+                  <p className="text-sm">Preview logo</p>
+                </div>
               )}
             </div>
           </div>
         </div>
 
-        <div className="mt-8 pt-6 border-t flex items-center justify-between">
+        <div className="mt-8 pt-6 border-t border-gray-200 flex items-center justify-between">
           <button
             type="submit"
-            className="bg-indigo-600 text-white font-semibold py-2.5 px-6 rounded-lg hover:bg-indigo-700 transition-colors shadow-sm"
+            className="flex items-center justify-center bg-[#3A6B4C] text-white font-semibold py-2.5 px-6 rounded-lg hover:bg-[#2c523a] transition-colors shadow-sm"
           >
+            <FiSave className="mr-2" />
             Simpan Perubahan
           </button>
           {notification.message && (
             <p
-              className={`text-sm ${
+              className={`text-sm font-medium ${
                 notification.type === "success"
-                  ? "text-green-600"
+                  ? "text-[#3A6B4C]"
                   : notification.type === "error"
                   ? "text-red-600"
-                  : "text-gray-600"
+                  : "text-[#3A6B4C]/80"
               }`}
             >
               {notification.message}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate, Link } from "react-router-dom";
-import { FiArrowLeft, FiSend } from "react-icons/fi";
+import { FiArrowLeft, FiSend, FiCheckCircle } from "react-icons/fi";
 
 const OrderPage = () => {
   const { id } = useParams();
@@ -67,124 +67,140 @@ const OrderPage = () => {
     }
   };
 
-  if (loading && !paket) return <p className="text-center py-20">Memuat...</p>;
+  if (loading && !paket)
+    return <p className="text-center py-20 text-[#3A6B4C]/70">Memuat...</p>;
   if (error && !paket)
-    return <p className="text-center py-20 text-red-500">{error}</p>;
+    return (
+      <p className="text-center py-20 text-red-500 bg-red-50 p-4 rounded-lg mx-auto max-w-md">
+        {error}
+      </p>
+    );
 
   if (submit) {
     return (
-      <div className="max-w-2xl mx-auto text-center py-20">
-        <h1 className="text-3xl font-bold text-green-600">Pesanan Terkirim!</h1>
-        <p className="mt-4 text-gray-700">
-          Terima kasih telah melakukan pemesanan. Tim kami akan segera
-          menghubungi Anda melalui email atau telepon untuk konfirmasi lebih
-          lanjut.
-        </p>
-        <Link
-          to="/katalog"
-          className="mt-8 inline-block bg-blue-600 text-white font-bold py-2 px-6 rounded-lg hover:bg-blue-700"
-        >
-          Kembali ke Katalog
-        </Link>
+      <div className="bg-white min-h-screen flex items-center justify-center">
+        <div className="max-w-2xl mx-auto text-center p-8">
+          <FiCheckCircle className="text-[#A8E6CF] text-6xl mx-auto mb-4" />
+          <h1 className="text-3xl font-semibold text-[#3A6B4C]">
+            Pesanan Terkirim!
+          </h1>
+          <p className="mt-4 text-[#3A6B4C]/80">
+            Terima kasih telah melakukan pemesanan. Tim kami akan segera
+            menghubungi Anda melalui email atau telepon untuk konfirmasi lebih
+            lanjut.
+          </p>
+          <Link
+            to="/katalog"
+            className="mt-8 inline-block bg-[#3A6B4C] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[#2c523a] transition-colors duration-300"
+          >
+            Kembali ke Katalog
+          </Link>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="max-w-4xl mx-auto py-24 px-4 sm:px-6 lg:px-8">
-      <button
-        onClick={() => navigate(-1)}
-        className="flex items-center text-gray-600 hover:text-gray-900 mb-6"
-      >
-        <FiArrowLeft className="mr-2" /> Kembali
-      </button>
+    <div className="bg-gray-50 min-h-screen">
+      <div className="max-w-4xl mx-auto py-20 px-4 sm:px-6 lg:px-8">
+        <button
+          onClick={() => navigate(-1)}
+          className="flex items-center gap-2 text-[#3A6B4C]/80 hover:text-[#3A6B4C] mb-8 font-medium transition-colors"
+        >
+          <FiArrowLeft /> Kembali ke Katalog
+        </button>
 
-      <h1 className="text-3xl font-extrabold text-gray-900 mb-2">
-        Form Pemesanan
-      </h1>
-      <p className="text-lg text-gray-600 mb-8">
-        Anda akan memesan paket:{" "}
-        <span className="font-bold text-blue-600">{paket?.nama_paket}</span>
-      </p>
+        <div className="text-center">
+          <h1 className="text-4xl sm:text-5xl font-semibold text-[#3A6B4C] tracking-tight mb-4">
+            Form Pemesanan
+          </h1>
+          <p className="text-lg text-[#3A6B4C]/80 mb-10">
+            Anda akan memesan paket:{" "}
+            <span className="font-bold text-[#3A6B4C]">
+              {paket?.nama_paket}
+            </span>
+          </p>
+        </div>
 
-      <form
-        onSubmit={handleSubmit}
-        className="bg-white p-8 rounded-lg shadow-md"
-      >
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
-              Nama Lengkap
-            </label>
-            <input
-              type="text"
-              name="nama_user"
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
-            />
+        <form
+          onSubmit={handleSubmit}
+          className="bg-white p-8 sm:p-10 rounded-2xl shadow-md"
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-[#3A6B4C]/90 mb-2">
+                Nama Lengkap
+              </label>
+              <input
+                type="text"
+                name="nama_user"
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#A8E6CF] transition-colors duration-300"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-[#3A6B4C]/90 mb-2">
+                Email
+              </label>
+              <input
+                type="email"
+                name="email"
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#A8E6CF] transition-colors duration-300"
+              />
+            </div>
+            <div>
+              <label className="block text-sm font-medium text-[#3A6B4C]/90 mb-2">
+                Nomor Telepon
+              </label>
+              <input
+                type="tel"
+                name="no_telp"
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#A8E6CF] transition-colors duration-300"
+              />
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-[#3A6B4C]/90 mb-2">
+                Alamat
+              </label>
+              <textarea
+                name="alamat"
+                rows="3"
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#A8E6CF] transition-colors duration-300"
+              ></textarea>
+            </div>
+            <div className="md:col-span-2">
+              <label className="block text-sm font-medium text-[#3A6B4C]/90 mb-2">
+                Catatan Tambahan (Opsional)
+              </label>
+              <textarea
+                name="note"
+                rows="3"
+                onChange={handleChange}
+                className="w-full px-4 py-3 bg-gray-100 border-transparent rounded-lg focus:bg-white focus:outline-none focus:ring-2 focus:ring-[#A8E6CF] transition-colors duration-300"
+              ></textarea>
+            </div>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Email
-            </label>
-            <input
-              type="email"
-              name="email"
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
-            />
+          {error && (
+            <p className="text-red-500 text-sm mt-4 text-center">{error}</p>
+          )}
+          <div className="mt-8">
+            <button
+              type="submit"
+              disabled={loading}
+              className="w-full flex justify-center items-center gap-2 py-3 px-4 rounded-lg font-semibold text-white bg-[#3A6B4C] hover:bg-[#2c523a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3A6B4C] transition-all duration-300 ease-in-out transform hover:scale-105 disabled:bg-[#3A6B4C]/50 disabled:scale-100"
+            >
+              <FiSend />
+              {loading ? "Mengirim..." : "Kirim Pesanan"}
+            </button>
           </div>
-          <div>
-            <label className="block text-sm font-medium text-gray-700">
-              Nomor Telepon
-            </label>
-            <input
-              type="tel"
-              name="no_telp"
-              onChange={handleChange}
-              required
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
-            />
-          </div>
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
-              Alamat
-            </label>
-            <textarea
-              name="alamat"
-              rows="3"
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
-            ></textarea>
-          </div>
-          <div className="md:col-span-2">
-            <label className="block text-sm font-medium text-gray-700">
-              Catatan Tambahan (Opsional)
-            </label>
-            <textarea
-              name="note"
-              rows="3"
-              onChange={handleChange}
-              className="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm"
-            ></textarea>
-          </div>
-        </div>
-        {error && (
-          <p className="text-red-500 text-sm mt-4 text-center">{error}</p>
-        )}
-        <div className="mt-8">
-          <button
-            type="submit"
-            disabled={loading}
-            className="w-full flex justify-center items-center py-3 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:bg-blue-300"
-          >
-            <FiSend className="mr-2" />
-            {loading ? "Mengirim..." : "Kirim Pesanan"}
-          </button>
-        </div>
-      </form>
+        </form>
+      </div>
     </div>
   );
 };

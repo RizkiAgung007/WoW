@@ -38,19 +38,26 @@ const Navbar = () => {
     console.log("Searching: ", searchTerm);
   };
 
+  // --- KELAS WARNA BARU ---
+  // Palet: Embun Pagi di Pegunungan
+  // Teks Utama: #3A6B4C (Hijau Pinus)
+  // Latar Hover: #A8E6CF (Hijau Mint)
+  // Latar Aktif: #A8E6CF (Hijau Mint)
+  // Teks Aktif: #FFFFFF (Putih)
+  
   const linkClass =
-    "text-gray-300 hover:bg-gray-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium transition-colors";
-  const activeLinkClass = "bg-gray-900 text-white";
+    "text-[#3A6B4C] hover:bg-[#A8E6CF]/40 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300";
+  const activeLinkClass = "bg-[#A8E6CF] !text-white";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 bg-gray-800/90 backdrop-blur-md shadow-lg z-50 transition-all duration-300">
+    <nav className="fixed top-0 left-0 right-0 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-200 z-50 transition-all duration-300">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Brand/Logo */}
           <div className="flex-shrink-0">
             <NavLink
               to="/"
-              className="text-white text-xl font-bold hover:text-gray-200 transition-colors"
+              className="text-[#3A6B4C] text-xl font-bold hover:opacity-80 transition-opacity"
             >
               {webName}
             </NavLink>
@@ -64,11 +71,11 @@ const Navbar = () => {
                 placeholder="Cari paket..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full bg-gray-700/50 text-white placeholder-gray-400 rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:bg-gray-700 transition-all"
+                className="w-full bg-gray-100 text-[#3A6B4C] placeholder-[#3A6B4C]/60 rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-[#A8E6CF] focus:bg-white transition-all"
               />
               <button
                 type="submit"
-                className="absolute right-0 top-0 mt-2 mr-3 text-gray-400 hover:text-white transition-colors"
+                className="absolute right-0 top-0 mt-2.5 mr-3 text-[#3A6B4C]/70 hover:text-[#3A6B4C] transition-colors"
               >
                 <FiSearch />
               </button>
@@ -107,7 +114,7 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="text-gray-300 hover:text-white focus:outline-none p-2"
+              className="text-[#3A6B4C] hover:opacity-80 focus:outline-none p-2"
             >
               {isMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
             </button>
@@ -123,7 +130,7 @@ const Navbar = () => {
             : "max-h-0 opacity-0 overflow-hidden"
         }`}
       >
-        <div className="px-4 pt-2 pb-3 space-y-2 bg-gray-800/95 backdrop-blur-md border-t border-gray-700">
+        <div className="px-4 pt-2 pb-3 space-y-2 bg-white/95 backdrop-blur-md border-t border-gray-200">
           {/* Search untuk mobile */}
           <form onSubmit={handleSearch} className="relative mb-3">
             <input
@@ -131,11 +138,11 @@ const Navbar = () => {
               placeholder="Cari paket..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full bg-gray-700/50 text-white placeholder-gray-400 rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-blue-400"
+              className="w-full bg-gray-100 text-[#3A6B4C] placeholder-[#3A6B4C]/60 rounded-full py-2 pl-4 pr-10 focus:outline-none focus:ring-2 focus:ring-[#A8E6CF] focus:bg-white"
             />
             <button
               type="submit"
-              className="absolute right-0 top-0 mt-2 mr-3 text-gray-400"
+              className="absolute right-0 top-0 mt-2.5 mr-3 text-[#3A6B4C]/70"
             >
               <FiSearch />
             </button>

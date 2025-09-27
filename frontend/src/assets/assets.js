@@ -16,7 +16,11 @@ import galleryImg8 from './gunung.jpg';
 import galleryImg9 from './gunung.jpg';
 import galleryImg10 from './gunung.jpg';
 
+import contact1 from './gunung.jpg';
+import contact2 from './gunung.jpg';
 
+import about1 from './gunung.jpg';
+import about2 from './gunung.jpg';
 
 export const HeroAssets = {
   heroImage1,
@@ -41,3 +45,13 @@ export const GalleryImage = [
   { id: 9,  src: galleryImg9,  alt: 'Gallery Image 9' },
   { id: 10, src: galleryImg10, alt: 'Gallery Image 10' },
 ];
+
+export const ContactAssets = {
+  contact1,
+  contact2,
+};
+
+export const AboutAssets = {
+  about1,
+  about2,
+}

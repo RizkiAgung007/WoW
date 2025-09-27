@@ -49,7 +49,7 @@ const Testimonial = () => {
     infinite: true,
     speed: 600,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 5000,
     slidesToShow: 1,
     slidesToScroll: 1,
     arrows: false,
@@ -60,51 +60,63 @@ const Testimonial = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100">
+    <section className="py-20 bg-gradient-to-br from-[#A8E6CF]/10 via-white to-white overflow-hidden">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <style>
+          {`
+            .testimonial-dots li button:before {
+              color: #3A6B4C;
+              opacity: 0.3;
+              font-size: 10px;
+            }
+            .testimonial-dots li.slick-active button:before {
+              color: #3A6B4C;
+              opacity: 1;
+            }
+          `}
+        </style>
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+          <h2 className="text-4xl md:text-5xl font-semibold text-[#3A6B4C] mb-4">
             Testimonial
           </h2>
-          <div className="w-24 h-1 bg-gradient-to-r from-gray-400 to-gray-600 mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-[#A8E6CF] mx-auto rounded-full"></div>
         </div>
 
         <div className="relative">
           <Slider {...settings}>
             {testimonialData.map((testimonial) => (
               <div key={testimonial.id} className="outline-none">
-                <div className="bg-white rounded-2xl shadow-xl p-8 md:p-12 mx-4 relative">
+                <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-8 md:p-12 mx-4 relative">
                   {/* Quote Icon */}
-                  <div className="absolute -top-6 left-8">
-                    <div className="w-12 h-12 bg-gradient-to-br from-gray-600 to-gray-800 rounded-full flex items-center justify-center shadow-lg">
-                      {/* <FiQuote className="text-white text-xl" /> */}
-                      <p className="text-white text-xl" />
+                  <div className="absolute -top-6 left-1/2 -translate-x-1/2">
+                    <div className="w-12 h-12 bg-[#A8E6CF] rounded-full flex items-center justify-center shadow-md">
+                      {/* <FiQuote className="text-[#3A6B4C] text-2xl" /> */}
                     </div>
                   </div>
 
                   {/* Testimonial Content */}
                   <div className="pt-8">
-                    <blockquote className="text-gray-700 text-lg md:text-xl leading-relaxed mb-8 italic text-center">
+                    <blockquote className="text-[#3A6B4C]/90 text-lg md:text-xl leading-relaxed mb-8 font-serif italic text-center">
                       "{testimonial.quote}"
                     </blockquote>
 
                     {/* Divider Line */}
-                    <div className="w-full h-px bg-gradient-to-r from-transparent via-gray-300 to-transparent mb-6"></div>
+                    <div className="w-full h-px bg-gradient-to-r from-transparent via-[#A8E6CF]/50 to-transparent mb-6"></div>
 
                     {/* Author Info */}
                     <div className="text-center">
-                      <h4 className="text-xl font-bold text-gray-900 mb-1">
+                      <h4 className="text-xl font-bold text-[#3A6B4C] mb-1">
                         {testimonial.name}
                       </h4>
-                      <p className="text-gray-500 text-sm">
+                      <p className="text-[#3A6B4C]/70 text-sm">
                         {testimonial.role}
                       </p>
                     </div>
                   </div>
 
                   {/* Decorative Elements */}
-                  <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-gradient-to-br from-gray-200 to-gray-300 rounded-full opacity-50"></div>
-                  <div className="absolute -top-2 -right-4 w-4 h-4 bg-gradient-to-br from-gray-300 to-gray-400 rounded-full opacity-60"></div>
+                  <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-[#A8E6CF]/30 rounded-full"></div>
+                  <div className="absolute -top-2 -left-2 w-4 h-4 bg-[#A8E6CF]/40 rounded-full"></div>
                 </div>
               </div>
             ))}

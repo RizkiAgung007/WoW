@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { FiChevronDown } from "react-icons/fi"; // Impor ikon panah
 
 const ManajemenOrder = () => {
   const [orders, setOrders] = useState([]);
@@ -6,9 +7,24 @@ const ManajemenOrder = () => {
   const [error, setError] = useState("");
 
   const statusStyles = {
-    request: "bg-yellow-100 text-yellow-800 ring-yellow-300",
-    approved: "bg-green-100 text-green-800 ring-green-300",
-    rejected: "bg-red-100 text-red-800 ring-red-300",
+    request: {
+      bg: "bg-yellow-100",
+      text: "text-yellow-800",
+      ring: "ring-yellow-400",
+      dot: "bg-yellow-500",
+    },
+    approved: {
+      bg: "bg-green-100",
+      text: "text-green-800",
+      ring: "ring-green-400",
+      dot: "bg-green-500",
+    },
+    rejected: {
+      bg: "bg-red-100",
+      text: "text-red-800",
+      ring: "ring-red-400",
+      dot: "bg-red-500",
+    },
   };
 
   const fetchOrders = async () => {
@@ -19,17 +35,14 @@ const ManajemenOrder = () => {
       if (!token) {
         throw new Error("Token tidak ditemukan, silakan login ulang.");
       }
-
       const response = await fetch("http://localhost:5000/api/orders", {
         method: "GET",
         headers: { Authorization: `Bearer ${token}` },
       });
-
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Gagal mengambil data pesanan.");
       }
-
       const data = await response.json();
       setOrders(data.data);
     } catch (err) {
@@ -53,7 +66,6 @@ const ManajemenOrder = () => {
           : order
       )
     );
-
     try {
       const token = localStorage.getItem("token");
       const response = await fetch(
@@ -67,7 +79,6 @@ const ManajemenOrder = () => {
           body: JSON.stringify({ status_order: newStatus }),
         }
       );
-
       if (!response.ok) {
         throw new Error("Gagal memperbarui status.");
       }
@@ -79,117 +90,168 @@ const ManajemenOrder = () => {
     }
   };
 
+  const StatusSelector = ({ order }) => {
+    const currentStyle =
+      statusStyles[order.status_order] || statusStyles.request;
+
+    return (
+      <div className="relative w-36">
+        <span
+          className={`absolute left-3 top-1/2 -translate-y-1/2 h-2 w-2 rounded-full ${currentStyle.dot}`}
+        ></span>
+        <select
+          value={order.status_order}
+          onChange={(e) => handleStatusChange(order.order_id, e.target.value)}
+          className={`w-full pl-8 pr-8 py-2 border-none rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 appearance-none transition-colors duration-200 ${currentStyle.bg} ${currentStyle.text} ${currentStyle.ring}`}
+        >
+          <option value="request">Request</option>
+          <option value="approved">Approved</option>
+          <option value="rejected">Rejected</option>
+        </select>
+        <div className="absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none">
+          <FiChevronDown className={currentStyle.text} />
+        </div>
+      </div>
+    );
+  };
+
   const renderContent = () => {
     if (loading)
       return (
-        <tr>
-          <td colSpan="6" className="text-center py-10 text-gray-500">
-            Memuat data pesanan...
-          </td>
-        </tr>
+        <div className="text-center py-10 text-[#3A6B4C]/70">
+          Memuat data pesanan...
+        </div>
       );
     if (error)
       return (
-        <tr>
-          <td colSpan="6" className="text-center py-10 text-red-600 bg-red-50">
-            {error}
-          </td>
-        </tr>
+        <div className="text-center py-10 text-red-600 bg-red-50 p-4 rounded-lg">
+          {error}
+        </div>
       );
     if (orders.length === 0)
       return (
-        <tr>
-          <td colSpan="6" className="text-center py-10 text-gray-500">
-            Tidak ada data pesanan.
-          </td>
-        </tr>
+        <div className="text-center py-10 text-[#3A6B4C]/70">
+          Tidak ada data pesanan.
+        </div>
       );
 
-    return orders.map((order, index) => (
-      <tr key={order.order_id} className="hover:bg-gray-50">
-        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-          {index + 1}
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-gray-800">
-          {order.nama_user}
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-          {order.nama_paket}
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-          {order.email}
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
-          {order.no_telp}
-        </td>
-        <td className="px-6 py-4 whitespace-nowrap text-sm">
-          <select
-            value={order.status_order}
-            onChange={(e) => handleStatusChange(order.order_id, e.target.value)}
-            className={`w-full p-2 border-none rounded-md text-sm font-medium focus:outline-none focus:ring-2 ${
-              statusStyles[order.status_order]
-            }`}
-          >
-            <option value="request">Request</option>
-            <option value="approved">Approved</option>
-            <option value="rejected">Rejected</option>
-          </select>
-        </td>
-      </tr>
-    ));
-  };
+    return (
+      <>
+        {/* Mobile View */}
+        <div className="space-y-4 md:hidden">
+          {orders.map((order) => (
+            <div
+              key={order.order_id}
+              className="bg-white p-4 rounded-lg shadow-md border"
+            >
+              <div className="flex justify-between items-start">
+                <div>
+                  <h3 className="font-semibold text-[#3A6B4C]">
+                    {order.nama_user}
+                  </h3>
+                  <p className="text-sm text-[#3A6B4C]/80">
+                    {order.nama_paket}
+                  </p>
+                </div>
+                <p className="text-sm font-medium text-[#3A6B4C]">
+                  #{order.order_id}
+                </p>
+              </div>
+              <div className="text-sm text-[#3A6B4C]/80 mt-4 space-y-1 border-t pt-3">
+                <p>
+                  <strong>Email:</strong> {order.email}
+                </p>
+                <p>
+                  <strong>Telp:</strong> {order.no_telp}
+                </p>
+              </div>
+              <div className="mt-4">
+                <StatusSelector order={order} />
+              </div>
+            </div>
+          ))}
+        </div>
 
-  return (
-    <div>
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Manajemen Order</h1>
-      <div className="bg-white shadow-md rounded-lg overflow-hidden">
-        <div className="overflow-x-auto">
+        {/* Desktop View */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-100">
               <tr>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-semibold text-[#3A6B4C]/70 uppercase tracking-wider"
                 >
                   No
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-semibold text-[#3A6B4C]/70 uppercase tracking-wider"
                 >
                   Nama User
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-semibold text-[#3A6B4C]/70 uppercase tracking-wider"
                 >
                   Paket Order
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-semibold text-[#3A6B4C]/70 uppercase tracking-wider"
                 >
                   Email
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-semibold text-[#3A6B4C]/70 uppercase tracking-wider"
                 >
                   No. Telp
                 </th>
                 <th
                   scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                  className="px-6 py-3 text-left text-xs font-semibold text-[#3A6B4C]/70 uppercase tracking-wider"
                 >
                   Status
                 </th>
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {renderContent()}
+              {orders.map((order, index) => (
+                <tr key={order.order_id} className="hover:bg-[#A8E6CF]/20">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-[#3A6B4C]">
+                    {index + 1}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm font-semibold text-[#3A6B4C]">
+                    {order.nama_user}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-[#3A6B4C]/80">
+                    {order.nama_paket}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-[#3A6B4C]/80">
+                    {order.email}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-[#3A6B4C]/80">
+                    {order.no_telp}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm">
+                    <StatusSelector order={order} />
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
+      </>
+    );
+  };
+
+  return (
+    <div>
+      <h1 className="text-3xl font-semibold text-[#3A6B4C] mb-6">
+        Manajemen Order
+      </h1>
+      <div className="bg-white shadow-md rounded-2xl md:overflow-hidden">
+        {renderContent()}
       </div>
     </div>
   );
