@@ -102,7 +102,7 @@ const ManajemenOrder = () => {
         <select
           value={order.status_order}
           onChange={(e) => handleStatusChange(order.order_id, e.target.value)}
-          className={`w-full pl-8 pr-8 py-2 border-none rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 appearance-none transition-colors duration-200 ${currentStyle.bg} ${currentStyle.text} ${currentStyle.ring}`}
+          className={`w-full pl-8 pr-8 py-2 border-none rounded-lg text-sm font-semibold focus:outline-none focus:ring-2 appearance-none transition-colors duration-200 ${currentStyle.bg} ${currentStyle.text} ${currentStyle.ring} cursor-pointer`}
         >
           <option value="request">Request</option>
           <option value="approved">Approved</option>

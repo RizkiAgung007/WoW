@@ -18,7 +18,7 @@ const GalleryPage = () => {
         {/* Gallery Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[250px]">
           {GalleryImage.map((image, index) => {
-            // Randomize layout pattern
+            // Randomize layout 
             const random = Math.random();
             let itemClass = "col-span-1 row-span-1"; 
             

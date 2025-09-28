@@ -92,7 +92,7 @@ const HeroSection = ({ scrollToId }) => {
       <button
         onClick={handleScroll}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 w-14 h-14 bg-[#A8E6CF]/20 backdrop-blur-sm rounded-full flex items-center justify-center text-white border border-[#A8E6CF]/50
-                   hover:bg-[#A8E6CF]/40 hover:border-[#A8E6CF]/70 transition-all duration-300 transform hover:scale-110 animate-bounce"
+                   hover:bg-[#A8E6CF]/40 hover:border-[#A8E6CF]/70 transition-all duration-300 transform hover:scale-110 animate-bounce cursor-pointer"
         aria-label="Scroll to next section"
       >
         <FiArrowDown size={24} />

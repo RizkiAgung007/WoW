@@ -50,14 +50,14 @@ const Footer = () => {
 
   return (
     <footer className="bg-gray-50 border-t border-gray-200">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto py-12 px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 md:divide-x md:divide-gray-200">
           {/* Nama Web & Deskripsi */}
           <div className="md:pr-8">
             <h2 className="text-2xl font-semibold text-[#3A6B4C] mb-2">
               {settings.nama_web}
             </h2>
-            <p className="text-sm text-[#3A6B4C]/80">{settings.deskripsi}</p>
+            <p className="text-justify text-sm text-[#3A6B4C]/80">{settings.deskripsi}</p>
           </div>
 
           {/* Alamat */}

@@ -194,7 +194,7 @@ const ManajemenSettings = () => {
         <div className="mt-8 pt-6 border-t border-gray-200 flex items-center justify-between">
           <button
             type="submit"
-            className="flex items-center justify-center bg-[#3A6B4C] text-white font-semibold py-2.5 px-6 rounded-lg hover:bg-[#2c523a] transition-colors shadow-sm"
+            className="flex items-center justify-center bg-[#3A6B4C] text-white font-semibold py-2.5 px-6 rounded-lg hover:bg-[#2c523a] transition-colors shadow-sm cursor-pointer"
           >
             <FiSave className="mr-2" />
             Simpan Perubahan

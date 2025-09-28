@@ -76,7 +76,7 @@ const LoginPage = () => {
           )}
           <button
             type="submit"
-            className="w-full flex justify-center items-center gap-2 py-3 px-4 rounded-lg font-semibold text-white bg-[#3A6B4C] hover:bg-[#2c523a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3A6B4C] transition-all duration-300 ease-in-out transform hover:scale-105"
+            className="w-full flex justify-center items-center gap-2 py-3 px-4 rounded-lg font-semibold text-white bg-[#3A6B4C] hover:bg-[#2c523a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3A6B4C] transition-all duration-300 ease-in-out transform hover:scale-105 cursor-pointer"
           >
             Login <FiLogIn />
           </button>

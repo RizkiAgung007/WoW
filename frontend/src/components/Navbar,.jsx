@@ -38,12 +38,7 @@ const Navbar = () => {
     console.log("Searching: ", searchTerm);
   };
 
-  // --- KELAS WARNA BARU ---
-  // Palet: Embun Pagi di Pegunungan
-  // Teks Utama: #3A6B4C (Hijau Pinus)
-  // Latar Hover: #A8E6CF (Hijau Mint)
-  // Latar Aktif: #A8E6CF (Hijau Mint)
-  // Teks Aktif: #FFFFFF (Putih)
+
   
   const linkClass =
     "text-[#3A6B4C] hover:bg-[#A8E6CF]/40 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300";

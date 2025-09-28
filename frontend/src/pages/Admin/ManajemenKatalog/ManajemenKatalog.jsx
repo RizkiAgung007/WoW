@@ -121,14 +121,14 @@ const ManajemenKatalog = () => {
                   onClick={() =>
                     navigate(`/admin/katalog/edit/${item.catalog_id}`)
                   }
-                  className="p-2 text-[#3A6B4C]/80 hover:bg-[#A8E6CF]/40 rounded-full transition-colors"
+                  className="p-2 text-[#3A6B4C]/80 hover:bg-[#A8E6CF]/40 rounded-full transition-colors cursor-pointer"
                   title="Edit"
                 >
                   <FiEdit2 size={16} />
                 </button>
                 <button
                   onClick={() => handleDelete(item.catalog_id)}
-                  className="p-2 text-red-600 hover:bg-red-100 rounded-full transition-colors"
+                  className="p-2 text-red-600 hover:bg-red-100 rounded-full transition-colors cursor-pointer"
                   title="Hapus"
                 >
                   <FiTrash2 size={16} />
@@ -211,14 +211,14 @@ const ManajemenKatalog = () => {
                       onClick={() =>
                         navigate(`/admin/katalog/edit/${item.catalog_id}`)
                       }
-                      className="p-2 text-[#3A6B4C]/80 hover:bg-[#A8E6CF]/40 rounded-full transition-colors"
+                      className="p-2 text-[#3A6B4C]/80 hover:bg-[#A8E6CF]/40 rounded-full transition-colors cursor-pointer"
                       title="Edit"
                     >
                       <FiEdit2 size={16} />
                     </button>
                     <button
                       onClick={() => handleDelete(item.catalog_id)}
-                      className="p-2 text-red-600 hover:bg-red-100 rounded-full transition-colors"
+                      className="p-2 text-red-600 hover:bg-red-100 rounded-full transition-colors cursor-pointer"
                       title="Hapus"
                     >
                       <FiTrash2 size={16} />
@@ -241,7 +241,7 @@ const ManajemenKatalog = () => {
         </h1>
         <button
           onClick={() => navigate("/admin/katalog/create")}
-          className="flex items-center justify-center bg-[#3A6B4C] text-white py-2 px-4 rounded-lg hover:bg-[#2c523a] transition-colors shadow-sm font-semibold w-full md:w-auto"
+          className="flex items-center justify-center bg-[#3A6B4C] text-white py-2 px-4 rounded-lg hover:bg-[#2c523a] transition-colors shadow-sm font-semibold w-full md:w-auto cursor-pointer"
         >
           <FiPlus className="mr-2" />
           Tambah Katalog

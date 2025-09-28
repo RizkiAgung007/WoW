@@ -116,7 +116,7 @@ const EditKatalog = () => {
       <div className="flex items-center mb-6">
         <button
           onClick={() => navigate("/admin/katalog")}
-          className="p-2 mr-4 rounded-full hover:bg-[#A8E6CF]/40 text-[#3A6B4C] transition-colors"
+          className="p-2 mr-4 rounded-full hover:bg-[#A8E6CF]/40 text-[#3A6B4C] transition-colors cursor-pointer"
         >
           <FiArrowLeft size={20} />
         </button>
@@ -224,7 +224,7 @@ const EditKatalog = () => {
             <button
               type="submit"
               disabled={loading}
-              className="flex items-center justify-center w-full md:w-auto bg-[#3A6B4C] text-white font-semibold py-2.5 px-6 rounded-lg hover:bg-[#2c523a] transition-colors disabled:bg-[#3A6B4C]/50"
+              className="flex items-center justify-center w-full md:w-auto bg-[#3A6B4C] text-white font-semibold py-2.5 px-6 rounded-lg hover:bg-[#2c523a] transition-colors disabled:bg-[#3A6B4C]/50 cursor-pointer"
             >
               <FiSave className="mr-2" />
               {loading ? "Menyimpan..." : "Simpan Perubahan"}

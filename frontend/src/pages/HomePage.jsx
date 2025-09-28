@@ -6,7 +6,7 @@ import GalleryCase from "../components/GalleryCase";
 
 const HomePage = () => {
   return (
-    <div>
+    <div className="bg-white antialiased">
       <HeroSection scrollToId="showcase" />
       <ShowCase />
       <Testimonial />

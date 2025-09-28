@@ -78,7 +78,7 @@ const KatalogPage = () => {
         <div className="flex justify-center flex-wrap gap-3 mb-16">
           <button
             onClick={() => handleFilter("semua")}
-            className={`px-5 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${
+            className={`px-5 py-2 text-sm font-medium rounded-full transition-colors duration-300 cursor-pointer ${
               selected === "semua"
                 ? "bg-[#3A6B4C] text-white shadow-md"
                 : "bg-gray-100 text-[#3A6B4C]/80 hover:bg-gray-200"
@@ -90,7 +90,7 @@ const KatalogPage = () => {
             <button
               key={jenis.id}
               onClick={() => handleFilter(jenis.id)}
-              className={`px-5 py-2 text-sm font-medium rounded-full transition-colors duration-300 ${
+              className={`px-5 py-2 text-sm font-medium rounded-full transition-colors duration-300 cursor-pointer ${
                 selected === jenis.id
                   ? "bg-[#3A6B4C] text-white shadow-md"
                   : "bg-gray-100 text-[#3A6B4C]/80 hover:bg-gray-200"

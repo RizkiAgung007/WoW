@@ -124,7 +124,6 @@ router.put("/:order_id/status", auth, async (req, res) => {
         minimumFractionDigits: 0
       }).format(user.harga)
 
-      // 2. Gunakan template email yang lebih profesional
       if (status_order === "approved") {
         subject = `✅ Pesanan Anda untuk Paket "${user.nama_paket}" Telah Disetujui!`;
         htmlBody = `

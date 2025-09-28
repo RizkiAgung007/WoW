@@ -91,7 +91,7 @@ const OrderPage = () => {
           </p>
           <Link
             to="/katalog"
-            className="mt-8 inline-block bg-[#3A6B4C] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[#2c523a] transition-colors duration-300"
+            className="mt-8 inline-block bg-[#3A6B4C] text-white font-semibold py-3 px-6 rounded-lg hover:bg-[#2c523a] transition-colors duration-300 cursor-pointer"
           >
             Kembali ke Katalog
           </Link>
@@ -193,7 +193,7 @@ const OrderPage = () => {
             <button
               type="submit"
               disabled={loading}
-              className="w-full flex justify-center items-center gap-2 py-3 px-4 rounded-lg font-semibold text-white bg-[#3A6B4C] hover:bg-[#2c523a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3A6B4C] transition-all duration-300 ease-in-out transform hover:scale-105 disabled:bg-[#3A6B4C]/50 disabled:scale-100"
+              className="w-full flex justify-center items-center gap-2 py-3 px-4 rounded-lg font-semibold text-white bg-[#3A6B4C] hover:bg-[#2c523a] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#3A6B4C] transition-all duration-300 ease-in-out transform hover:scale-105 disabled:bg-[#3A6B4C]/50 disabled:scale-100 cursor-pointer"
             >
               <FiSend />
               {loading ? "Mengirim..." : "Kirim Pesanan"}

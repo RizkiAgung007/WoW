@@ -76,7 +76,7 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <div className="p-4 border-t border-gray-200">
           <button
             onClick={handleLogout}
-            className="w-full flex items-center justify-center bg-red-50 text-red-600 py-2.5 rounded-xl hover:bg-red-100 transition-colors font-medium"
+            className="w-full flex items-center justify-center bg-red-50 text-red-600 py-2.5 rounded-xl hover:bg-red-100 transition-colors font-medium cursor-pointer"
           >
             <FiLogOut className="mr-2" />
             Logout
